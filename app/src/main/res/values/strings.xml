@@ -6,7 +6,7 @@
     <string name="prompt_birth_date">Birth Date</string>
     <string name="prompt_birth_place">Birth Place</string>
     <string name="prompt_tcid">TC Identification Number</string>
-    <string name="prompt_photo">Birth Place</string>
+    <string name="prompt_photo">Photo</string>
     <string name="action_save">Save</string>
 
 
