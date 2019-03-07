@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.AdapterView
 import android.widget.Spinner
 
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_get_info.*
 import pl.aprilapps.easyphotopicker.EasyImage
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import android.content.Intent
@@ -19,30 +19,24 @@ import android.graphics.Bitmap
 import java.util.*
 
 
-/**
- * A login screen that offers login via email/password.
- */
-class LoginActivity : AppCompatActivity() {
+class GetInfoActivity : AppCompatActivity() {
 
 
     var selectedCity: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_get_info)
 
         save_button.setOnClickListener { attemptSave() }
 
         val spinner: Spinner = findViewById(R.id.cities_spinner)
-        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,
             R.array.cities_array,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
             spinner.adapter = adapter
         }
 
@@ -51,9 +45,6 @@ class LoginActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 var v : Any = parent!!.getItemAtPosition(position)
                 selectedCity = v as String
-                name.error = selectedCity
-                name.requestFocus()
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -68,12 +59,13 @@ class LoginActivity : AppCompatActivity() {
 
         birthdate.maxDate = Calendar.getInstance().timeInMillis
 
+        photo_view.maxHeight = photo_view.width
+
     }
 
 
     private fun attemptSave() {
 
-        // Reset errors.
         name.error = null
         surname.error = null
         tcid.error = null
@@ -167,10 +159,11 @@ class LoginActivity : AppCompatActivity() {
                 photoPath = imageFile?.path
                 val bitmap = BitmapFactory.decodeFile(imageFile?.path, options)
                 photo_view.setImageBitmap(bitmap)
+                photo_view.maxHeight = photo_view.width
+
             }
 
             override fun onImagePickerError(e: Exception?, source: EasyImage.ImageSource?, type: Int) {
-                //Some error handling
             }
 
         })
