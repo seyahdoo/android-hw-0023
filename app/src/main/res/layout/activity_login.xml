@@ -87,7 +87,7 @@
                     android:text="@string/prompt_birth_date"/>
 
             <DatePicker
-                    android:id="@+id/datePicker1"
+                    android:id="@+id/birthdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:datePickerMode="spinner"
@@ -118,8 +118,21 @@
                     android:layout_height="wrap_content"
                     android:text="@string/prompt_photo"/>
 
+            <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/photo_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
+            />
 
+            <Button
+                    android:id="@+id/photo_button"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/action_photo"
+                    android:textStyle="bold"/>
 
 
             <Button
