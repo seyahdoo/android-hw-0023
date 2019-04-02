@@ -15,6 +15,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_must_only_contain_digis">TCID must be all digits</string>
     <string name="error_must_be_11_in_lengt">TCID must be 11 character long</string>
+    <string name="courses">COURSES</string>
 
     <string-array name="cities_array">
         <item>Istanbul</item>

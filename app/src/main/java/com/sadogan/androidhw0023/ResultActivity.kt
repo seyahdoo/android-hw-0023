@@ -1,5 +1,6 @@
 package com.sadogan.androidhw0023
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.graphics.Bitmap
@@ -33,6 +34,11 @@ class ResultActivity : AppCompatActivity() {
 
         back_button.setOnClickListener {
             finish()
+        }
+
+        courses_button.setOnClickListener {
+            val intent = Intent(this, RecyclerActivity::class.java)
+            startActivity(intent)
         }
 
     }
