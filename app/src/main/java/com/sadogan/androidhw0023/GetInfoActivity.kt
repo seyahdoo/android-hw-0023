@@ -23,10 +23,12 @@ class GetInfoActivity : AppCompatActivity() {
 
 
     var selectedCity: String? = null
+    var selectedCityPosition: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_get_info)
+
 
         save_button.setOnClickListener { attemptSave() }
 
@@ -44,6 +46,7 @@ class GetInfoActivity : AppCompatActivity() {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 var v : Any = parent!!.getItemAtPosition(position)
+                selectedCityPosition = position
                 selectedCity = v as String
             }
 
@@ -51,7 +54,6 @@ class GetInfoActivity : AppCompatActivity() {
 
         }
 
-        selectedCity = resources.getStringArray(R.array.cities_array)[0]
 
         photo_button.setOnClickListener {
             EasyImage.openChooserWithGallery( this, "Choose an image", 0)
@@ -60,6 +62,22 @@ class GetInfoActivity : AppCompatActivity() {
         birthdate.maxDate = Calendar.getInstance().timeInMillis
 
         photo_view.maxHeight = photo_view.width
+
+
+        name.setText(savedInstanceState?.getString("name","Name"))
+        surname.setText(savedInstanceState?.getString("surname","Surname"))
+        tcid.setText(savedInstanceState?.getString("tcid","TC Identification Number"))
+
+        selectedCity = savedInstanceState?.getString("birthplace", resources.getStringArray(R.array.cities_array)[0])
+        spinner.setSelection(savedInstanceState?.getInt("birthplaceListPosition")?:0)
+
+        birthdate.updateDate(
+            savedInstanceState?.getInt("birthdateYear")?:1995,
+            savedInstanceState?.getInt("birthdateMonth")?:1,
+            savedInstanceState?.getInt("birthdateDay")?:1
+        )
+
+        
 
     }
 
@@ -169,5 +187,23 @@ class GetInfoActivity : AppCompatActivity() {
         })
     }
 
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+
+        outState?.putString("name", name.text.toString())
+        outState?.putString("surname", surname.text.toString())
+        outState?.putString("tcid", tcid.text.toString())
+
+        outState?.putInt("birthdateDay", birthdate.dayOfMonth)
+        outState?.putInt("birthdateMonth", birthdate.month)
+        outState?.putInt("birthdateYear", birthdate.year)
+
+        outState?.putString("birthplace", selectedCity)
+        outState?.putInt("birthplaceListPosition", selectedCityPosition)
+        outState?.putString("photo_path", photoPath)
+        outState?.putString("photoPath",photoPath)
+
+    }
 
 }

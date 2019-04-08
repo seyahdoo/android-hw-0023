@@ -16,7 +16,7 @@ class RecyclerActivity : AppCompatActivity() {
         setContentView(R.layout.recycler_test)
 
         // Loads grades into the ArrayList
-        addAnimals()
+        addGrades()
 
         // Creates a vertical Layout Manager
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -30,7 +30,7 @@ class RecyclerActivity : AppCompatActivity() {
     }
 
     // Adds grades to the empty grades ArrayList
-    fun addAnimals() {
+    fun addGrades() {
         grades.add(Grade("Amac","AA"))
         grades.add(Grade("Amac","AA"))
         grades.add(Grade("Amac","AA"))
